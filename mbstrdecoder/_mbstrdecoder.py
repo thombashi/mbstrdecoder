@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+import re
 import sys
 
 
@@ -41,6 +42,8 @@ class MultiByteStrDecoder(object):
         'shift_jis', 'shift_jis_2004', 'shift_jisx0213',
     )
 
+    __RE_UTF7 = re.compile("[+].*?[-]")
+
     @property
     def unicode_str(self):
         return self.__unicode_str
@@ -61,6 +64,19 @@ class MultiByteStrDecoder(object):
 
         return isinstance(self.__encoded_str, memoryview)
 
+    def __is_multibyte_utf7(self, encoded_str):
+        if self.codec != "utf_7":
+            return False
+
+        utf7_symbol_count = encoded_str.count("+")
+        if utf7_symbol_count <= 0:
+            return False
+
+        if utf7_symbol_count != encoded_str.count("-"):
+            return False
+
+        return utf7_symbol_count == len(self.__RE_UTF7.findall(encoded_str))
+
     def __get_encoded_str(self):
         if self.__is_buffer():
             return str(self.__encoded_str)
@@ -73,7 +89,8 @@ class MultiByteStrDecoder(object):
         for codec in self.__CODEC_LIST:
             try:
                 self.__codec = codec
-                return encoded_str.decode(codec)
+                decoded_str = encoded_str.decode(codec)
+                break
             except UnicodeDecodeError:
                 continue
             except UnicodeEncodeError:
@@ -86,12 +103,28 @@ class MultiByteStrDecoder(object):
                     # some of the objects that cannot convertible to a string
                     # may reach this line
                     raise TypeError("argument must be a string")
+        else:
+            self.__codec = None
 
-        self.__codec = None
+            try:
+                message = "unknown codec: encoded_str={}".format(encoded_str)
+            except UnicodeDecodeError:
+                message = "unknown codec: value-type={}".format(
+                    type(encoded_str))
 
-        try:
-            message = "unknown codec: encoded_str={}".format(encoded_str)
-        except UnicodeDecodeError:
-            message = "unknown codec: value-type={}".format(type(encoded_str))
+            raise UnicodeDecodeError(message)
 
-        raise UnicodeDecodeError(message)
+        if self.codec == "utf_7":
+            if self.__is_multibyte_utf7(encoded_str):
+                try:
+                    _work = decoded_str.encode("ascii")
+
+                    self.__codec = "ascii"
+                    decoded_str = encoded_str.decode("ascii")
+                except UnicodeEncodeError:
+                    pass
+            else:
+                self.__codec = "ascii"
+                decoded_str = encoded_str.decode("ascii")
+
+        return decoded_str
