@@ -61,24 +61,27 @@ class MultiByteStrDecoder(object):
 
         return isinstance(self.__encoded_str, memoryview)
 
-    def __to_unicode(self):
+    def __get_encoded_str(self):
         if self.__is_buffer():
-            value = str(self.__encoded_str)
-        else:
-            value = self.__encoded_str
+            return str(self.__encoded_str)
+
+        return self.__encoded_str
+
+    def __to_unicode(self):
+        encoded_str = self.__get_encoded_str()
 
         for codec in self.__CODEC_LIST:
             try:
                 self.__codec = codec
-                return value.decode(codec)
+                return encoded_str.decode(codec)
             except UnicodeDecodeError:
                 continue
             except UnicodeEncodeError:
                 # already a unicode string
-                return value
+                return encoded_str
             except AttributeError:
                 try:
-                    return "{}".format(value)
+                    return "{}".format(encoded_str)
                 except UnicodeDecodeError:
                     # some of the objects that cannot convertible to a string
                     # may reach this line
@@ -87,8 +90,8 @@ class MultiByteStrDecoder(object):
         self.__codec = None
 
         try:
-            message = "unknown codec: value={}".format(value)
+            message = "unknown codec: encoded_str={}".format(encoded_str)
         except UnicodeDecodeError:
-            message = "unknown codec: value-type={}".format(type(value))
+            message = "unknown codec: value-type={}".format(type(encoded_str))
 
         raise UnicodeDecodeError(message)
