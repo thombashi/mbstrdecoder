@@ -9,6 +9,8 @@ from __future__ import unicode_literals
 import re
 import sys
 
+import six
+
 
 class MultiByteStrDecoder(object):
     __CODEC_LIST = (
@@ -42,7 +44,7 @@ class MultiByteStrDecoder(object):
         'shift_jis', 'shift_jis_2004', 'shift_jisx0213',
     )
 
-    __RE_UTF7 = re.compile("[+].*?[-]")
+    __RE_UTF7 = re.compile(six.b("[+].*?[-]"))
 
     @property
     def unicode_str(self):
@@ -65,14 +67,14 @@ class MultiByteStrDecoder(object):
         return isinstance(self.__encoded_str, memoryview)
 
     def __is_multibyte_utf7(self, encoded_str):
-        if self.codec != "utf_7":
+        if self.__codec != "utf_7":
             return False
 
-        utf7_symbol_count = encoded_str.count("+")
+        utf7_symbol_count = encoded_str.count(six.b("+"))
         if utf7_symbol_count <= 0:
             return False
 
-        if utf7_symbol_count != encoded_str.count("-"):
+        if utf7_symbol_count != encoded_str.count(six.b("-")):
             return False
 
         return utf7_symbol_count == len(self.__RE_UTF7.findall(encoded_str))
