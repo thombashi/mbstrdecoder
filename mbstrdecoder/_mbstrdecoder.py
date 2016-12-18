@@ -55,13 +55,14 @@ class MultiByteStrDecoder(object):
 
         self.__unicode_str = self.__to_unicode()
 
-    def __to_unicode(self):
+    def __is_buffer(self):
         if sys.version_info.major <= 2:
-            is_buffer = isinstance(self.__encoded_str, buffer)
-        else:
-            is_buffer = isinstance(self.__encoded_str, memoryview)
+            return isinstance(self.__encoded_str, buffer)
 
-        if is_buffer:
+        return isinstance(self.__encoded_str, memoryview)
+
+    def __to_unicode(self):
+        if self.__is_buffer():
             value = str(self.__encoded_str)
         else:
             value = self.__encoded_str
