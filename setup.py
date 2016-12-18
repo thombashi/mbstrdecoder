@@ -9,6 +9,7 @@ import os.path
 import setuptools
 import sys
 
+
 needs_pytest = set(["pytest", "test", "ptr"]).intersection(sys.argv)
 pytest_runner = ["pytest-runner"] if needs_pytest else []
 
@@ -26,7 +27,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 setuptools.setup(
     name="mbstrdecoder",
-    version="0.1.0",
+    version="0.1.1",
     author="Tsuyoshi Hombashi",
     author_email="gogogo.vm@gmail.com",
     url="https://github.com/thombashi/mbstrdecoder",
