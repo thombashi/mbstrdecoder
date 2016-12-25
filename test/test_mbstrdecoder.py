@@ -7,12 +7,24 @@
 from __future__ import unicode_literals
 
 import pytest
+import six
 
 from mbstrdecoder import *
 
 
 nan = float("nan")
 inf = float("inf")
+
+
+class Test_to_MultiByteStrDecoder_repr:
+
+    @pytest.mark.parametrize(["value", "expected"], [
+        ["吾輩は猫である", "codec=unicode, unicode=吾輩は猫である"],
+    ])
+    def test_normal(self, value, expected):
+        decoder = MultiByteStrDecoder(value)
+
+        assert six.text_type(decoder) == expected
 
 
 class Test_to_MultiByteStrDecoder_unicode:

@@ -60,6 +60,9 @@ class MultiByteStrDecoder(object):
 
         self.__unicode_str = self.__to_unicode()
 
+    def __repr__(self):
+        return "codec={:s}, unicode={:s}".format(self.codec, self.unicode_str)
+
     def __is_buffer(self):
         if sys.version_info.major <= 2:
             return isinstance(self.__encoded_str, buffer)
