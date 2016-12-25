@@ -96,10 +96,29 @@ class MultiByteStrDecoder(object):
             except UnicodeDecodeError:
                 continue
             except UnicodeEncodeError:
-                # already a unicode string
+                # already a unicode string (python 2)
                 self.__codec = "unicode"
                 return encoded_str
             except AttributeError:
+                if six.PY3 and isinstance(encoded_str, six.string_types):
+                    # already a unicode string (python 3)
+                    self.__codec = "unicode"
+
+                    if not encoded_str:
+                        return encoded_str
+
+                    try:
+                        # python 2 compatibility
+                        encoded_str.encode("ascii")
+                        self.__codec = "ascii"
+                        return encoded_str
+                    except UnicodeEncodeError:
+                        pass
+
+                    return encoded_str
+
+                self.__codec = None
+
                 try:
                     return "{}".format(encoded_str)
                 except UnicodeDecodeError:
@@ -118,9 +137,13 @@ class MultiByteStrDecoder(object):
             raise UnicodeDecodeError(message)
 
         if self.codec == "utf_7":
+            if not encoded_str:
+                self.__codec = "unicode"
+                return encoded_str
+
             if self.__is_multibyte_utf7(encoded_str):
                 try:
-                    _work = decoded_str.encode("ascii")
+                    decoded_str.encode("ascii")
 
                     self.__codec = "ascii"
                     decoded_str = encoded_str.decode("ascii")
