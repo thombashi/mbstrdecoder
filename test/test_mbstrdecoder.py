@@ -30,7 +30,7 @@ class Test_to_MultiByteStrDecoder_unicode:
 
     @pytest.mark.parametrize(["value", "expected"], [
         ["", "unicode"],
-        ["abcdefgh", "unicode"],
+        ["abcdefgh", "ascii"],
         ["吾輩は猫である", "unicode"],
     ])
     def test_normal_unicode(self, value, expected):
