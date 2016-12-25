@@ -137,20 +137,26 @@ class MultiByteStrDecoder(object):
             raise UnicodeDecodeError(message)
 
         if self.codec == "utf_7":
-            if not encoded_str:
-                self.__codec = "unicode"
-                return encoded_str
-
-            if self.__is_multibyte_utf7(encoded_str):
-                try:
-                    decoded_str.encode("ascii")
-
-                    self.__codec = "ascii"
-                    decoded_str = encoded_str.decode("ascii")
-                except UnicodeEncodeError:
-                    pass
-            else:
-                self.__codec = "ascii"
-                decoded_str = encoded_str.decode("ascii")
+            return self.__process_utf7(encoded_str, decoded_str)
 
         return decoded_str
+
+    def __process_utf7(self, encoded_str, decoded_str):
+        if not encoded_str:
+            self.__codec = "unicode"
+
+            return encoded_str
+
+        if self.__is_multibyte_utf7(encoded_str):
+            try:
+                decoded_str.encode("ascii")
+
+                self.__codec = "ascii"
+
+                return encoded_str.decode("ascii")
+            except UnicodeEncodeError:
+                return decoded_str
+
+        self.__codec = "ascii"
+
+        return encoded_str.decode("ascii")
