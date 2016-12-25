@@ -18,8 +18,6 @@ inf = float("inf")
 class Test_to_MultiByteStrDecoder_unicode:
 
     @pytest.mark.parametrize(["value", "expected"], [
-        ["abcdefgh", "abcdefgh"],
-        ["吾輩は猫である", "吾輩は猫である"],
         [None, "None"],
         ["", ""],
         [True, "True"],
@@ -28,6 +26,15 @@ class Test_to_MultiByteStrDecoder_unicode:
     ])
     def test_normal(self, value, expected):
         assert MultiByteStrDecoder(value).unicode_str == expected
+
+    @pytest.mark.parametrize(["value", "expected"], [
+        ["abcdefgh", "ascii"],
+        ["吾輩は猫である", "unicode"],
+    ])
+    def test_normal_unicode(self, value, expected):
+        decoder = MultiByteStrDecoder(value)
+        assert decoder.codec == expected
+        assert decoder.unicode_str == value
 
     @pytest.mark.parametrize(["value", "codec"], [
         ["いろはにほへと", "utf_7"],

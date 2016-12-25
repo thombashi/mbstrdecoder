@@ -97,6 +97,7 @@ class MultiByteStrDecoder(object):
                 continue
             except UnicodeEncodeError:
                 # already a unicode string
+                self.__codec = "unicode"
                 return encoded_str
             except AttributeError:
                 try:
