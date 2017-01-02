@@ -30,17 +30,6 @@ class Test_to_MultiByteStrDecoder_repr:
 class Test_to_MultiByteStrDecoder_unicode:
 
     @pytest.mark.parametrize(["value", "expected"], [
-        [None, "None"],
-        [True, "True"],
-        [[], "[]"],
-        [1, "1"],
-    ])
-    def test_normal(self, value, expected):
-        decode = MultiByteStrDecoder(value)
-        assert decode.codec is None
-        assert decode.unicode_str == expected
-
-    @pytest.mark.parametrize(["value", "expected"], [
         ["", "unicode"],
         ["abcdefgh", "ascii"],
         ["吾輩は猫である", "unicode"],
@@ -65,3 +54,13 @@ class Test_to_MultiByteStrDecoder_unicode:
 
         assert decoder.codec == codec
         assert decoder.unicode_str == value
+
+    @pytest.mark.parametrize(["value", "expected"], [
+        [None, ValueError],
+        [True, ValueError],
+        [[], ValueError],
+        [1, ValueError],
+    ])
+    def test_exception(self, value, expected):
+        with pytest.raises(expected):
+            MultiByteStrDecoder(value)

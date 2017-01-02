@@ -58,10 +58,18 @@ class MultiByteStrDecoder(object):
         self.__encoded_str = value
         self.__codec = None
 
+        self.__validate_str()
+
         self.__unicode_str = self.__to_unicode()
 
     def __repr__(self):
         return "codec={:s}, unicode={:s}".format(self.codec, self.unicode_str)
+
+    def __validate_str(self):
+        if isinstance(self.__encoded_str, six.string_types):
+            return
+
+        raise ValueError("value must be a string")
 
     def __is_buffer(self):
         if sys.version_info.major <= 2:
