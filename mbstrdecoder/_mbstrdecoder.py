@@ -72,7 +72,8 @@ class MultiByteStrDecoder(object):
         ]):
             return
 
-        raise ValueError("value must be a string")
+        raise ValueError("value must be a string: actual={}".format(
+            type(self.__encoded_str)))
 
     def __is_buffer(self):
         if sys.version_info.major <= 2:
