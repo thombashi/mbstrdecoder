@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import
 from __future__ import unicode_literals
+
 import re
 import sys
 
@@ -102,6 +103,10 @@ class MultiByteStrDecoder(object):
 
     def __to_unicode(self):
         encoded_str = self.__get_encoded_str()
+
+        if encoded_str == b"":
+            self.__codec = "unicode"
+            return ""
 
         for codec in self.__CODEC_LIST:
             try:

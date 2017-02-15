@@ -6,10 +6,9 @@
 
 from __future__ import unicode_literals
 
+from mbstrdecoder import *
 import pytest
 import six
-
-from mbstrdecoder import *
 
 
 nan = float("nan")
@@ -30,11 +29,19 @@ class Test_to_MultiByteStrDecoder_repr:
 class Test_to_MultiByteStrDecoder_unicode:
 
     @pytest.mark.parametrize(["value", "expected"], [
+        [b"", ""],
+        [b"abcd", "abcd"],
+    ])
+    def test_normal_unicode_str(self, value, expected):
+        decoder = MultiByteStrDecoder(value)
+        assert decoder.unicode_str == expected
+
+    @pytest.mark.parametrize(["value", "expected"], [
         ["", "unicode"],
         ["abcdefgh", "ascii"],
         ["吾輩は猫である", "unicode"],
     ])
-    def test_normal_unicode(self, value, expected):
+    def test_normal_codec(self, value, expected):
         decoder = MultiByteStrDecoder(value)
         assert decoder.codec == expected
         assert decoder.unicode_str == value
