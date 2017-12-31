@@ -67,10 +67,7 @@ class MultiByteStrDecoder(object):
         return "codec={:s}, unicode={:s}".format(self.codec, self.unicode_str)
 
     def __validate_str(self):
-        if any([
-            isinstance(self.__encoded_str, six.string_types),
-            isinstance(self.__encoded_str, six.binary_type),
-        ]):
+        if isinstance(self.__encoded_str, (six.string_types, six.binary_type)):
             return
 
         raise ValueError("value must be a string: actual={}".format(
