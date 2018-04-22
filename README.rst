@@ -42,10 +42,10 @@ Usage
 
         from __future__ import print_function
         from mbstrdecoder import MultiByteStrDecoder
-        
+
         encoded_multibyte_text = u"マルチバイト文字".encode("utf-8")
         decoder = MultiByteStrDecoder(encoded_multibyte_text)
-        
+
         print(encoded_multibyte_text)
         print(decoder.unicode_str)
         print(decoder.codec)
@@ -60,7 +60,7 @@ Usage
 
 Dependencies
 ============
-Python 2.7+ or 3.3+
+Python 2.7+ or 3.4+
 
 Test dependencies
 -----------------
