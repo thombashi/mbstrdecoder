@@ -6,9 +6,9 @@
 
 from __future__ import unicode_literals
 
-from mbstrdecoder import *
 import pytest
 import six
+from mbstrdecoder import *
 
 
 nan = float("nan")
