@@ -45,6 +45,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=install_requires,
     packages=setuptools.find_packages(exclude=["test*"]),
+    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*',
     setup_requires=PYTEST_RUNNER_REQUIRES,
     tests_require=tests_require,
 
