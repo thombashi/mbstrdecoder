@@ -47,6 +47,22 @@ class MultiByteStrDecoder(object):
         'mac_cyrillic', 'mac_greek', 'mac_iceland', 'mac_latin2', 'mac_roman', 'mac_turkish',
         'ptcp154',
         'shift_jis', 'shift_jis_2004', 'shift_jisx0213',
+
+        'base64_codec',
+        'bz2_codec',
+        'hex_codec',
+        'idna',
+        'mbcs',
+        'palmos',
+        'punycode',
+        'quopri_codec',
+        'raw_unicode_escape',
+        'rot_13',
+        'string_escape',
+        'unicode_escape',
+        'unicode_internal',
+        'uu_codec',
+        'zlib_codec'
     )
 
     __RE_UTF7 = re.compile(six.b("[+].*?[-]"))
