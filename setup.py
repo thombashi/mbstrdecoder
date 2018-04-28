@@ -13,8 +13,11 @@ import sys
 import setuptools
 
 
-needs_pytest = set(["pytest", "test", "ptr"]).intersection(sys.argv)
-pytest_runner = ["pytest-runner"] if needs_pytest else []
+def need_pytest():
+    return set(["pytest", "test", "ptr"]).intersection(sys.argv)
+
+
+pytest_runner = ["pytest-runner"] if need_pytest() else []
 
 
 REQUIREMENT_DIR = "requirements"
