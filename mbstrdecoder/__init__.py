@@ -6,4 +6,5 @@
 
 from __future__ import absolute_import
 
+from .__version__ import __author__, __copyright__, __email__, __license__, __version__
 from ._mbstrdecoder import MultiByteStrDecoder

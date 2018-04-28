@@ -17,11 +17,16 @@ def need_pytest():
     return set(["pytest", "test", "ptr"]).intersection(sys.argv)
 
 
+MODULE_NAME = "mbstrdecoder"
+REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
+REQUIREMENT_DIR = "requirements"
 ENCODING = "utf8"
 
+pkg_info = {}
 PYTEST_RUNNER_REQUIRES = ["pytest-runner"] if need_pytest() else []
 
-REQUIREMENT_DIR = "requirements"
+with open(os.path.join(MODULE_NAME, "__version__.py")) as f:
+    exec(f.read(), pkg_info)
 
 with io.open("README.rst", encoding=ENCODING) as f:
     long_description = f.read()
@@ -33,19 +38,21 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_require = [line.strip() for line in f if line.strip()]
 
 setuptools.setup(
-    name="mbstrdecoder",
-    version="0.2.3",
-    author="Tsuyoshi Hombashi",
-    author_email="tsuyoshi.hombashi@gmail.com",
-    url="https://github.com/thombashi/mbstrdecoder",
-    keywords=["multi-byte character", "unicode", "decoder"],
-    license="MIT License",
+    name=MODULE_NAME,
+    version=pkg_info["__version__"],
+    url=REPOSITORY_URL,
+
+    author=pkg_info["__author__"],
+    author_email=pkg_info["__email__"],
     description="multi-byte character string decoder",
-    long_description=long_description,
     include_package_data=True,
-    install_requires=install_requires,
+    keywords=["multi-byte character", "unicode", "decoder"],
+    license=pkg_info["__license__"],
+    long_description=long_description,
     packages=setuptools.find_packages(exclude=["test*"]),
     python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*',
+
+    install_requires=install_requires,
     setup_requires=PYTEST_RUNNER_REQUIRES,
     tests_require=tests_require,
 
