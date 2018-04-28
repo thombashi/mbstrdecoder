@@ -18,11 +18,12 @@ def need_pytest():
 
 
 pytest_runner = ["pytest-runner"] if need_pytest() else []
+ENCODING = "utf8"
 
 
 REQUIREMENT_DIR = "requirements"
 
-with io.open("README.rst", encoding="utf8") as f:
+with io.open("README.rst", encoding=ENCODING) as f:
     long_description = f.read()
 
 with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
