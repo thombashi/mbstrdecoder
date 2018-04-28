@@ -62,6 +62,9 @@ Dependencies
 ============
 Python 2.7+ or 3.4+
 
+- `chardet <https://github.com/chardet/chardet>`__
+- `six <https://pypi.python.org/pypi/six/>`__
+
 Test dependencies
 -----------------
 - `pytest <https://pypi.python.org/pypi/pytest>`__
