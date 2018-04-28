@@ -17,9 +17,9 @@ def need_pytest():
     return set(["pytest", "test", "ptr"]).intersection(sys.argv)
 
 
-pytest_runner = ["pytest-runner"] if need_pytest() else []
 ENCODING = "utf8"
 
+PYTEST_RUNNER_REQUIRES = ["pytest-runner"] if need_pytest() else []
 
 REQUIREMENT_DIR = "requirements"
 
@@ -45,7 +45,7 @@ setuptools.setup(
     include_package_data=True,
     install_requires=install_requires,
     packages=setuptools.find_packages(exclude=["test*"]),
-    setup_requires=pytest_runner,
+    setup_requires=PYTEST_RUNNER_REQUIRES,
     tests_require=tests_require,
 
     classifiers=[
