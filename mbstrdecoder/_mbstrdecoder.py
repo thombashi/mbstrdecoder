@@ -13,6 +13,11 @@ import six
 
 
 class MultiByteStrDecoder(object):
+    """
+    Reference:
+        https://docs.python.org/3/library/codecs.html
+    """
+
     __CODEC_LIST = (
         'utf_7',
         'utf_8', 'utf_8_sig',
