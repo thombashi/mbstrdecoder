@@ -9,6 +9,7 @@ from __future__ import absolute_import, unicode_literals
 import re
 import sys
 
+import chardet
 import six
 
 
@@ -18,7 +19,7 @@ class MultiByteStrDecoder(object):
         https://docs.python.org/3/library/codecs.html
     """
 
-    __CODEC_LIST = (
+    __CODEC_LIST = [
         'utf_7',
         'utf_8', 'utf_8_sig',
         'utf_16', 'utf_16_be', 'utf_16_le',
@@ -62,9 +63,8 @@ class MultiByteStrDecoder(object):
         'unicode_escape',
         'unicode_internal',
         'uu_codec',
-        'zlib_codec'
-    )
-
+        'zlib_codec',
+    ]
     __RE_UTF7 = re.compile(six.b("[+].*?[-]"))
 
     @property
@@ -125,9 +125,20 @@ class MultiByteStrDecoder(object):
             self.__codec = "unicode"
             return ""
 
-        for codec in self.__CODEC_LIST:
+        try:
+            detect = chardet.detect(encoded_str)
+        except TypeError:
+            detect = {}
+
+        if detect.get("encoding") != "ascii" and detect.get("confidence") == 1:
+            codec_candidate_list = [detect.get("encoding")] + self.__CODEC_LIST
+        else:
+            # utf7 tend to be misrecognized as ascii
+            codec_candidate_list = self.__CODEC_LIST
+
+        for codec in codec_candidate_list:
             try:
-                self.__codec = codec
+                self.__codec = codec.lower().replace("-", "_")
                 decoded_str = encoded_str.decode(codec)
                 break
             except UnicodeDecodeError:
