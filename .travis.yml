@@ -18,7 +18,7 @@ install:
     - pip install tox
     - pip install coveralls
 
-script: 
+script:
     - tox
     - python setup.py test --addopts "-v --cov mbstrdecoder --cov-report term-missing"
 
@@ -28,13 +28,3 @@ after_success:
 notifications:
    slack:
     secure: NksnLSqhN90VVFFpngTlH9nJD/szRjasmLT/9WlNXl+du2t6rTVK72E0PCNQsY0HQDWkZ1GsSSpXbAjRie6TdrvbpGPh2aHDYLjqr08eKpXGVtHW7HvAw8kmBDjj1jOEseS3TX3dCSlj2XRxzaBIcIlBa/CflcfRFoHt/9YPAvzyTYO6vzjrN0mwhGc6/4sUMrtvwdn8KHdAu/gJ+0WDeYUHRTVkaPR4ekPQMJ1L6tF6VN7gF8WKxxuDyg6I7bgspL4ZjgM/FjXP7SjwkP7AIfiAIe6iigzjhrTC3uj4tMpqGB3vC6Swvy+tPnjN3ki73DzBpc1l5k/iAIDxL+VFl+y1Xs5OA8rvSM02gePEgv6uf1r0k52/WSbf/AfowDoJDO7sSbKTn+ic+h5ZSMLnz9Z3avPf1kleK+jGNw3No7OSw+fP2xZ7S0NfueAl2sdbF152snhbMXgTG6alv26wfNCqpqWI6Tm2RkcPjc/e7V2wl4ky18fhthyP8Kfhb/iEnAGi8J2Cfd1Oyh7xx5C8VwTeStf+GeUVbYxg9sWdTFSPbqRzKaiR4avf41Wcjz4/zfUOsvq0w0QQhaYEs31CT8Han4KpX79LbrrAMfKTDBKyFRv0En1ka9LxIzposprDR4lcgeBjRrfDJSndoB2P3V9JIm0nQeTFkS70uyMy69A=
-
-deploy:
-  provider: pypi
-  user: vmmhypervisor
-  password:
-    secure: m7bj1mNED936fCmKmWHBiHx/mjehGU22YronFqDk3D0mNV7xebFwDRbKq5D45w0DhkN6chdJZ9gXf8HQxUjGr/4EdxUFKgYATwefK0bCvNH59MrT6V+17MbZcjElTWZSsnQc1o68yg2ZYnqu7cvMIotPyrP0UmE/51z9JlmBNCPW1lNoxWvJxxPwK3YtJyLjUuQQRNVJ7j6KtFw/4HWihr524t/XwA0PT+8dBmAFUN/Esm4RxKFjWrx/u1XnosDNXB+8HLuIwQTs5vwqkpE02MSf9jbi4vJyEdkCg9NDqyp+li4CWERQKdfS1fuKFqfyTjSnmqA5YwwXxTW4ZBEkKH/hQ/7rskpY2iA3ITgevl2nZtVUzeGotO68z5Nu+5RsOUilivT3d3TkJ7pyp0dz3b0i2D3NKtdl87v8n+W5kyG3sgjeQPyR+KT9YEEpboINKQY+zJp9dfy48DSliWIGAWcyhcoz9DG0tMcTZnXRX+/tn4idT+4xekZgHR7KkPlFMjrrov/estGYnHb6HGqTV0tCLL/nENMzNyWLE7pGkspb32dEP+26dhN3ke7uVya3Z8bGx+SwO0i7l0sLtbTasThKnQ37fjgdqd5mAfYZX9wHP/91rBPzpn6TX5oBOoM9jCJTcLI5MzlO+Lu01/wdMAHuowJnNO69Y/4jgUgMydc=
-  on:
-    tags: true
-    repo: thombashi/mbstrdecoder
-  distributions: "sdist bdist_wheel"
