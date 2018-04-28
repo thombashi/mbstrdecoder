@@ -62,6 +62,7 @@ setuptools.setup(
     setup_requires=SETUPTOOLS_REQUIRES + PYTEST_RUNNER_REQUIRES,
     tests_require=tests_require,
     extras_require={
+        "build": build_requires,
         "test": tests_require,
     },
 
