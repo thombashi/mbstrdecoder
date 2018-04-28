@@ -17,6 +17,15 @@ def need_pytest():
     return set(["pytest", "test", "ptr"]).intersection(sys.argv)
 
 
+def get_release_command_class():
+    try:
+        from releasecmd import ReleaseCommand
+    except ImportError:
+        return {}
+
+    return {"release": ReleaseCommand}
+
+
 MODULE_NAME = "mbstrdecoder"
 REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
 REQUIREMENT_DIR = "requirements"
@@ -63,6 +72,7 @@ setuptools.setup(
     tests_require=tests_require,
     extras_require={
         "build": "wheel",
+        "release": "releasecmd>=0.0.9",
         "test": tests_require,
     },
 
@@ -80,4 +90,5 @@ setuptools.setup(
         "Programming Language :: Python :: 3.6",
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
-    ])
+    ],
+    cmdclass=get_release_command_class())
