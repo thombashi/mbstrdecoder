@@ -118,7 +118,7 @@ class MultiByteStrDecoder(object):
 
         return self.__encoded_str
 
-    def __get_codec_candidate(self, encoded_str):
+    def __get_codec_candidate_list(self, encoded_str):
         try:
             detect = chardet.detect(encoded_str)
         except TypeError:
@@ -139,7 +139,7 @@ class MultiByteStrDecoder(object):
             self.__codec = "unicode"
             return ""
 
-        codec_candidate_list = self.__get_codec_candidate(encoded_str)
+        codec_candidate_list = self.__get_codec_candidate_list(encoded_str)
 
         for codec in codec_candidate_list:
             try:
