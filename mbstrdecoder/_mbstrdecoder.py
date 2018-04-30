@@ -149,6 +149,9 @@ class MultiByteStrDecoder(object):
         codec_candidate_list = self.__get_codec_candidate_list(encoded_str)
 
         for codec in codec_candidate_list:
+            if not codec:
+                continue
+
             try:
                 self.__codec = codec.lower().replace("-", "_")
                 decoded_str = encoded_str.decode(codec)
