@@ -12,6 +12,7 @@ import sys
 import chardet
 import six
 
+from ._func import to_codec_name
 
 class MultiByteStrDecoder(object):
     """
@@ -163,7 +164,7 @@ class MultiByteStrDecoder(object):
                 continue
 
             try:
-                self.__codec = codec.lower().replace("-", "_")
+                self.__codec = to_codec_name(codec)
                 decoded_str = encoded_str.decode(codec)
                 break
             except UnicodeDecodeError:
