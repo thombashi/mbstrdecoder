@@ -13,6 +13,14 @@ import sys
 import setuptools
 
 
+MODULE_NAME = "mbstrdecoder"
+REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
+REQUIREMENT_DIR = "requirements"
+ENCODING = "utf8"
+
+pkg_info = {}
+
+
 def need_pytest():
     return set(["pytest", "test", "ptr"]).intersection(sys.argv)
 
@@ -25,13 +33,6 @@ def get_release_command_class():
 
     return {"release": ReleaseCommand}
 
-
-MODULE_NAME = "mbstrdecoder"
-REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
-REQUIREMENT_DIR = "requirements"
-ENCODING = "utf8"
-
-pkg_info = {}
 
 with open(os.path.join(MODULE_NAME, "__version__.py")) as f:
     exec(f.read(), pkg_info)
@@ -65,8 +66,8 @@ setuptools.setup(
         "Documentation": "http://{:s}.rtfd.io/".format(MODULE_NAME),
         "Tracker": "{:s}/issues".format(REPOSITORY_URL),
     },
-    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*',
 
+    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*',
     install_requires=SETUPTOOLS_REQUIRES + install_requires,
     setup_requires=SETUPTOOLS_REQUIRES + PYTEST_RUNNER_REQUIRES,
     tests_require=tests_require,
