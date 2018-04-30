@@ -124,11 +124,18 @@ class MultiByteStrDecoder(object):
         except TypeError:
             detect = {}
 
-        if detect.get("encoding") != "ascii" and detect.get("confidence") == 1:
-            codec_candidate_list = [detect.get("encoding")] + self.__CODEC_LIST
-        else:
+        codec_candidate_list = self.__CODEC_LIST
+        detect_encoding = detect.get("encoding")
+
+        if detect_encoding != "ascii" and detect.get("confidence") == 1:
             # utf7 tend to be misrecognized as ascii
-            codec_candidate_list = self.__CODEC_LIST
+
+            try:
+                codec_candidate_list.remove(detect_encoding)
+            except ValueError:
+                pass
+
+            codec_candidate_list.insert(0, detect_encoding)
 
         return codec_candidate_list
 
