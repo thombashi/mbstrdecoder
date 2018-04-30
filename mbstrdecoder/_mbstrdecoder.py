@@ -75,9 +75,13 @@ class MultiByteStrDecoder(object):
     def codec(self):
         return self.__codec
 
-    def __init__(self, value):
+    def __init__(self, value, codec_candidate_list=None):
         self.__encoded_str = value
         self.__codec = None
+        if codec_candidate_list is None:
+            self.__codec_candidate_list = []
+        else:
+            self.__codec_candidate_list = codec_candidate_list
 
         self.__validate_str()
 
@@ -137,7 +141,13 @@ class MultiByteStrDecoder(object):
 
             codec_candidate_list.insert(0, detect_encoding)
 
-        return codec_candidate_list
+        for codec_candidate in self.__codec_candidate_list:
+            try:
+                codec_candidate_list.remove(codec_candidate)
+            except ValueError:
+                pass
+
+        return self.__codec_candidate_list + codec_candidate_list
 
     def __to_unicode(self):
         encoded_str = self.__get_encoded_str()

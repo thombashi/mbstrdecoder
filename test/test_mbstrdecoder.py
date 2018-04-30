@@ -36,13 +36,24 @@ class Test_to_MultiByteStrDecoder_unicode:
         decoder = MultiByteStrDecoder(value)
         assert decoder.unicode_str == expected
 
-    @pytest.mark.parametrize(["value", "expected"], [
-        ["", "unicode"],
-        ["abcdefgh", "ascii"],
-        ["吾輩は猫である", "unicode"],
+    @pytest.mark.parametrize(["value", "encode", "expected"], [
+        ["", "utf8", "unicode"],
+        ["abcdefgh", "ascii", "ascii"],
+        ["吾輩は猫である", "utf8", "utf_8"],
     ])
-    def test_normal_codec(self, value, expected):
-        decoder = MultiByteStrDecoder(value)
+    def test_normal_codec(self, value, encode, expected):
+        decoder = MultiByteStrDecoder(value.encode(encode))
+        assert decoder.codec == expected
+        assert decoder.unicode_str == value
+
+    @pytest.mark.parametrize(["value", "encode", "expected", "codec_candidate_list"], [
+        ["abcdefgh", "ascii", "ascii", ["utf_32_le", "utf_32"]],
+        ["吾輩は猫である", "utf8", "utf_8", ["utf_32_le", "ascii"]],
+        ["吾輩は猫である", "utf8", "utf_8", None],
+        ["吾輩は猫である", "utf8", "utf_8", []],
+    ])
+    def test_normal_codec_candidate(self, value, encode, expected, codec_candidate_list):
+        decoder = MultiByteStrDecoder(value.encode(encode), codec_candidate_list)
         assert decoder.codec == expected
         assert decoder.unicode_str == value
 
