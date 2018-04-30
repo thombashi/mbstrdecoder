@@ -154,6 +154,7 @@ class MultiByteStrDecoder(object):
                 decoded_str = encoded_str.decode(codec)
                 break
             except UnicodeDecodeError:
+                self.__codec = None
                 continue
             except UnicodeEncodeError:
                 # already a unicode string (python 2)
