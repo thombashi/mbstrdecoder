@@ -118,13 +118,7 @@ class MultiByteStrDecoder(object):
 
         return self.__encoded_str
 
-    def __to_unicode(self):
-        encoded_str = self.__get_encoded_str()
-
-        if encoded_str == b"":
-            self.__codec = "unicode"
-            return ""
-
+    def __get_codec_candidate(self, encoded_str):
         try:
             detect = chardet.detect(encoded_str)
         except TypeError:
@@ -135,6 +129,17 @@ class MultiByteStrDecoder(object):
         else:
             # utf7 tend to be misrecognized as ascii
             codec_candidate_list = self.__CODEC_LIST
+
+        return codec_candidate_list
+
+    def __to_unicode(self):
+        encoded_str = self.__get_encoded_str()
+
+        if encoded_str == b"":
+            self.__codec = "unicode"
+            return ""
+
+        codec_candidate_list = self.__get_codec_candidate(encoded_str)
 
         for codec in codec_candidate_list:
             try:
