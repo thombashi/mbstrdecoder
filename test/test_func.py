@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 from textwrap import dedent
 
 import pytest
-from mbstrdecoder._func import *
+from mbstrdecoder._func import detect_file_encoding, to_codec_name
 
 
 @pytest.mark.parametrize(["value", "expected"], [
