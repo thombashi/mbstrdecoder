@@ -6,7 +6,7 @@
 .. image:: https://img.shields.io/pypi/pyversions/mbstrdecoder.svg
    :target: https://pypi.python.org/pypi/mbstrdecoder
 
-.. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux
+.. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux/macOS
     :target: https://travis-ci.org/thombashi/mbstrdecoder
 
 .. image:: https://img.shields.io/appveyor/ci/thombashi/mbstrdecoder/master.svg?label=Windows
