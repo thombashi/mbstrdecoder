@@ -43,7 +43,7 @@ Usage
         from __future__ import print_function
         from mbstrdecoder import MultiByteStrDecoder
 
-        encoded_multibyte_text = u"マルチバイト文字".encode("utf-8")
+        encoded_multibyte_text = "マルチバイト文字".encode("utf-8")
         decoder = MultiByteStrDecoder(encoded_multibyte_text)
 
         print(encoded_multibyte_text)
