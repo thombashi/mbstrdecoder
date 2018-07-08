@@ -30,7 +30,7 @@ def test_to_codec_name(value, expected):
 def test_detect_file_encoding(tmpdir, value, expected):
     data = dedent("""\
         # ほげほげ -----
-        print(con.get_attr_name_list(table_name))
+        print(con.fetch_attr_name_list(table_name))
         result = con.select(select="*", table_name=table_name)
         for record in result.fetchall():
         print(record)
