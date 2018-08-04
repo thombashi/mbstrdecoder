@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-'''
+"""
 .. codeauthor:: Tsuyoshi Hombashi <>
-'''
+"""
 
 from __future__ import absolute_import, unicode_literals
 
@@ -21,7 +21,7 @@ def detect_file_encoding(file_path):
     READ_SIZE = 4 * 1024
 
     try:
-        with open(file_path, mode='rb') as f:
+        with open(file_path, mode="rb") as f:
             while True:
                 binary = f.read(READ_SIZE)
                 if not binary:
