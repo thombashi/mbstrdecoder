@@ -6,7 +6,14 @@
 
 from __future__ import absolute_import, unicode_literals
 
+import os
+import stat
+
 from chardet.universaldetector import UniversalDetector
+
+
+def is_fifo(file_path):
+    return stat.S_ISFIFO(os.stat(file_path).st_mode)
 
 
 def to_codec_name(name):
@@ -17,6 +24,9 @@ def to_codec_name(name):
 
 
 def detect_file_encoding(file_path):
+    if is_fifo(file_path):
+        return None
+
     detector = UniversalDetector()
     READ_SIZE = 4 * 1024
 

@@ -6,6 +6,7 @@
 
 from __future__ import unicode_literals
 
+import os
 from textwrap import dedent
 
 import pytest
@@ -37,3 +38,12 @@ def test_detect_file_encoding(tmpdir, value, expected):
         f.write(data.encode(value))
 
     assert detect_file_encoding(str(p_csv)) == expected
+
+
+@pytest.mark.skipif("platform.system() == 'Windows'")
+def test_detect_file_encoding_fifo(tmpdir):
+    fifo = tmpdir.join("test_fifo")
+
+    os.mkfifo(str(fifo))
+
+    assert detect_file_encoding(str(fifo)) is None
