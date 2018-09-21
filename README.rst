@@ -4,7 +4,7 @@
     :target: https://badge.fury.io/py/mbstrdecoder
 
 .. image:: https://img.shields.io/pypi/pyversions/mbstrdecoder.svg
-   :target: https://pypi.python.org/pypi/mbstrdecoder
+   :target: https://pypi.org/project/mbstrdecoder
 
 .. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux/macOS
     :target: https://travis-ci.org/thombashi/mbstrdecoder
@@ -63,10 +63,10 @@ Dependencies
 Python 2.7+ or 3.4+
 
 - `chardet <https://github.com/chardet/chardet>`__
-- `six <https://pypi.python.org/pypi/six/>`__
+- `six <https://pypi.org/project/six/>`__
 
 Test dependencies
 -----------------
-- `pytest <https://pypi.python.org/pypi/pytest>`__
-- `pytest-runner <https://pypi.python.org/pypi/pytest-runner>`__
-- `tox <https://pypi.python.org/pypi/tox>`__
+- `pytest <https://pypi.org/project/pytest>`__
+- `pytest-runner <https://github.com/pytest-dev/pytest-runner>`__
+- `tox <https://pypi.org/project/tox>`__
