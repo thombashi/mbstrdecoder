@@ -7,6 +7,7 @@
 from __future__ import unicode_literals
 
 import os
+import platform  # noqa: W0611
 from textwrap import dedent
 
 import pytest
