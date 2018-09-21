@@ -48,3 +48,8 @@ class Test_detect_file_encoding(object):
         os.mkfifo(str(fifo))
 
         assert detect_file_encoding(str(fifo)) is None
+
+    def test_abnormal(self, tmpdir):
+        fifo = tmpdir.join("not_exist_fifo")
+
+        assert detect_file_encoding(str(fifo)) is None

@@ -24,7 +24,7 @@ def to_codec_name(name):
 
 
 def detect_file_encoding(file_path):
-    if is_fifo(file_path):
+    if not os.path.isfile(file_path) or is_fifo(file_path):
         return None
 
     detector = UniversalDetector()
