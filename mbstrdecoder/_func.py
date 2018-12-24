@@ -8,12 +8,21 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 import stat
+from errno import EBADF, ENOENT, ENOTDIR
 
 from chardet.universaldetector import UniversalDetector
 
 
 def is_fifo(file_path):
-    return stat.S_ISFIFO(os.stat(file_path).st_mode)
+    try:
+        return stat.S_ISFIFO(os.stat(file_path).st_mode)
+    except OSError as e:
+        if e.errno not in (ENOENT, ENOTDIR, EBADF):
+            raise
+
+        return False
+    except ValueError:
+        return False
 
 
 def to_codec_name(name):
