@@ -68,11 +68,11 @@ Dependencies
 Python 2.7+ or 3.4+
 
 Optional dependencies
------------------
+----------------------------------
 - `chardet <https://github.com/chardet/chardet>`__
 
 Test dependencies
------------------
+----------------------------------
 - `pytest <https://pypi.org/project/pytest>`__
 - `pytest-runner <https://github.com/pytest-dev/pytest-runner>`__
 - `six <https://pypi.org/project/six/>`__
