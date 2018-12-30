@@ -9,8 +9,6 @@ from __future__ import absolute_import, unicode_literals
 import re
 import sys
 
-import chardet
-
 from ._func import to_codec_name
 from ._six import PY3, b, binary_type, string_types
 
@@ -186,18 +184,31 @@ class MultiByteStrDecoder(object):
 
         return self.__encoded_str
 
-    def __get_codec_candidate_list(self, encoded_str):
+    @staticmethod
+    def __detect_encoding_helper(encoded_str):
+        try:
+            import chardet
+        except ImportError:
+            return None
+
         try:
             detect = chardet.detect(encoded_str)
         except TypeError:
             detect = {}
 
-        codec_candidate_list = self.__CODEC_LIST
         detect_encoding = detect.get("encoding")
 
         if detect_encoding != "ascii" and detect.get("confidence") == 1:
             # utf7 tend to be misrecognized as ascii
+            return detect_encoding
 
+        return None
+
+    def __get_codec_candidate_list(self, encoded_str):
+        codec_candidate_list = self.__CODEC_LIST
+        detect_encoding = self.__detect_encoding_helper(encoded_str)
+
+        if detect_encoding:
             try:
                 codec_candidate_list.remove(detect_encoding)
             except ValueError:
