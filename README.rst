@@ -28,10 +28,15 @@ Python library for multi-byte character string decoder.
 
 Installation
 ============
-
 ::
 
     pip install mbstrdecoder
+
+or install all of the optional dependencies:
+
+::
+
+    pip install mbstrdecoder[all]
 
 
 Usage
@@ -62,11 +67,13 @@ Dependencies
 ============
 Python 2.7+ or 3.4+
 
+Optional dependencies
+-----------------
 - `chardet <https://github.com/chardet/chardet>`__
-- `six <https://pypi.org/project/six/>`__
 
 Test dependencies
 -----------------
 - `pytest <https://pypi.org/project/pytest>`__
 - `pytest-runner <https://github.com/pytest-dev/pytest-runner>`__
+- `six <https://pypi.org/project/six/>`__
 - `tox <https://pypi.org/project/tox>`__
