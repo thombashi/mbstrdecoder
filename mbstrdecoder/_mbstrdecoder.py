@@ -10,9 +10,9 @@ import re
 import sys
 
 import chardet
-import six
 
 from ._func import to_codec_name
+from ._six import PY3, b, binary_type, string_types
 
 
 class MultiByteStrDecoder(object):
@@ -130,7 +130,7 @@ class MultiByteStrDecoder(object):
         "uu_codec",
         "zlib_codec",
     ]
-    __RE_UTF7 = re.compile(six.b("[+].*?[-]"))
+    __RE_UTF7 = re.compile(b("[+].*?[-]"))
 
     @property
     def unicode_str(self):
@@ -156,7 +156,7 @@ class MultiByteStrDecoder(object):
         return "codec={:s}, unicode={:s}".format(self.codec, self.unicode_str)
 
     def __validate_str(self):
-        if isinstance(self.__encoded_str, (six.string_types, six.binary_type)):
+        if isinstance(self.__encoded_str, (string_types, binary_type)):
             return
 
         raise ValueError("value must be a string: actual={}".format(type(self.__encoded_str)))
@@ -171,11 +171,11 @@ class MultiByteStrDecoder(object):
         if self.__codec != "utf_7":
             return False
 
-        utf7_symbol_count = encoded_str.count(six.b("+"))
+        utf7_symbol_count = encoded_str.count(b("+"))
         if utf7_symbol_count <= 0:
             return False
 
-        if utf7_symbol_count != encoded_str.count(six.b("-")):
+        if utf7_symbol_count != encoded_str.count(b("-")):
             return False
 
         return utf7_symbol_count == len(self.__RE_UTF7.findall(encoded_str))
@@ -238,7 +238,7 @@ class MultiByteStrDecoder(object):
                 self.__codec = "unicode"
                 return encoded_str
             except AttributeError:
-                if six.PY3 and isinstance(encoded_str, six.string_types):
+                if PY3 and isinstance(encoded_str, string_types):
                     # already a unicode string (python 3)
                     self.__codec = "unicode"
 
