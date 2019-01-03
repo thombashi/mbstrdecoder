@@ -48,7 +48,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 SETUPTOOLS_REQUIRES = ["setuptools>=38.3.0"]
 PYTEST_RUNNER_REQUIRES = ["pytest-runner"] if need_pytest() else []
-OPTIONAL_REQUIRES = ["chardet>=3.0.4"]
+OPTIONAL_REQUIRES = ["chardet>=3.0.4,<4.0.0"]
 
 setuptools.setup(
     name=MODULE_NAME,
@@ -74,7 +74,7 @@ setuptools.setup(
     extras_require={
         "all": OPTIONAL_REQUIRES,
         "build": ["wheel"],
-        "release": ["releasecmd>=0.0.12"],
+        "release": ["releasecmd>=0.0.12,<0.1.0"],
         "test": tests_require,
     },
 
