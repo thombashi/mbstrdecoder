@@ -2,18 +2,22 @@
 
 .. image:: https://badge.fury.io/py/mbstrdecoder.svg
     :target: https://badge.fury.io/py/mbstrdecoder
+    :alt: PyPI package version
 
 .. image:: https://img.shields.io/pypi/pyversions/mbstrdecoder.svg
    :target: https://pypi.org/project/mbstrdecoder
+    :alt: Supported Python versions
 
-.. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux/macOS
+.. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux/macOS-CI
     :target: https://travis-ci.org/thombashi/mbstrdecoder
+    :alt: Linux/macOS CI status
 
-.. image:: https://img.shields.io/appveyor/ci/thombashi/mbstrdecoder/master.svg?label=Windows
+.. image:: https://img.shields.io/appveyor/ci/thombashi/mbstrdecoder/master.svg?label=Windows-CI
     :target: https://ci.appveyor.com/project/thombashi/mbstrdecoder
 
 .. image:: https://coveralls.io/repos/github/thombashi/mbstrdecoder/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/mbstrdecoder?branch=master
+    :alt: Test coverage
 
 
 .. contents:: Table of contents
