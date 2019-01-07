@@ -8,11 +8,11 @@
    :target: https://pypi.org/project/mbstrdecoder
     :alt: Supported Python versions
 
-.. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux/macOS-CI
+.. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux/macOS%20CI
     :target: https://travis-ci.org/thombashi/mbstrdecoder
     :alt: Linux/macOS CI status
 
-.. image:: https://img.shields.io/appveyor/ci/thombashi/mbstrdecoder/master.svg?label=Windows-CI
+.. image:: https://img.shields.io/appveyor/ci/thombashi/mbstrdecoder/master.svg?label=Windows%20CI
     :target: https://ci.appveyor.com/project/thombashi/mbstrdecoder
 
 .. image:: https://coveralls.io/repos/github/thombashi/mbstrdecoder/badge.svg?branch=master
