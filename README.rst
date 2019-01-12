@@ -1,4 +1,12 @@
-**mbstrdecoder**
+.. contents:: **mbstrdecoder**
+   :backlinks: top
+   :local:
+
+
+Summary
+=======
+`mbstrdecoder <https://github.com/thombashi/mbstrdecoder>`__ is a Python library for multi-byte character string decoder.
+
 
 .. image:: https://badge.fury.io/py/mbstrdecoder.svg
     :target: https://badge.fury.io/py/mbstrdecoder
@@ -18,16 +26,6 @@
 .. image:: https://coveralls.io/repos/github/thombashi/mbstrdecoder/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/mbstrdecoder?branch=master
     :alt: Test coverage
-
-
-.. contents:: Table of contents
-   :backlinks: top
-   :local:
-
-
-Summary
-=======
-Python library for multi-byte character string decoder.
 
 
 Installation
