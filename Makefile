@@ -15,7 +15,7 @@ clean:
 .PHONY: fmt
 fmt:
 	@black $(CURDIR)
-	@autoflake --recursive --remove-all-unused-imports --exclude "__init__.py" .
+	@autoflake --in-place --recursive --remove-all-unused-imports --exclude "__init__.py" .
 	@isort --apply --recursive
 
 .PHONY: release
