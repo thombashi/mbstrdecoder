@@ -19,5 +19,5 @@ fmt:
 
 .PHONY: release
 release:
-	@python setup.py release
+	@python setup.py release --sign
 	@rm -rf dist/
