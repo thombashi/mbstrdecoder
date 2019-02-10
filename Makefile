@@ -1,4 +1,4 @@
-BUILD_DIR := _build
+PACKAGE := mbstrdecoder
 DOCS_DIR := docs
 
 
@@ -6,11 +6,20 @@ DOCS_DIR := docs
 build:
 	@make clean
 	@python setup.py build
-	@rm -rf $(BUILD_DIR)/
+	@twine check dist/*
+	@python setup.py clean --all
 
 .PHONY: clean
 clean:
-	@rm -rf $(BUILD_DIR)/ dist/ .eggs/ .pytest_cache/ .tox/ **/*/__pycache__/ *.egg-info/
+	@rm -rf $(PACKAGE)-*.*.*/ \
+		dist/ \
+		.eggs/ \
+		.pytest_cache/ \
+		.tox/ \
+		**/*/__pycache__/ \
+		*.egg-info/
+	@python setup.py clean --all
+	@find . -not -path '*/\.*' -type f | grep -E .+\.py\.[a-z0-9]{32,}\.py$ | xargs -r rm
 
 .PHONY: fmt
 fmt:
