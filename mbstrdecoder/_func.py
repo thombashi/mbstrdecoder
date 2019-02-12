@@ -10,6 +10,8 @@ import os
 import stat
 from errno import EBADF, ENOENT, ENOTDIR
 
+from ._binary_ext_checker import is_binary_ext_path
+
 
 def is_fifo(file_path):
     try:
@@ -33,7 +35,7 @@ def to_codec_name(name):
 def detect_file_encoding(file_path):
     from chardet.universaldetector import UniversalDetector
 
-    if not os.path.isfile(file_path) or is_fifo(file_path):
+    if not os.path.isfile(file_path) or is_binary_ext_path(file_path) or is_fifo(file_path):
         return None
 
     detector = UniversalDetector()
