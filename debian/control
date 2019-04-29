@@ -1,0 +1,26 @@
+Source: mbstrdecoder
+Section: python
+Priority: optional
+Maintainer: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
+Build-Depends:
+    debhelper (>= 10),
+    dh-python,
+    python3-all,
+    python3-pytest,
+    python3-setuptools,
+    python3-wheel
+Standards-Version: 4.1.2
+Homepage: https://github.com/thombashi/mbstrdecoder
+X-Python3-Version: >= 3.4
+
+Package: python3-mbstrdecoder
+Architecture: all
+Depends:
+    ${python3:Depends},
+    ${misc:Depends},
+    python3-chardet,
+Description: Python library for multi-byte character string decoder
+ - GitHub repository: https://github.com/thombashi/mbstrdecoder
+ - Issue tracker: https://github.com/thombashi/mbstrdecoder/issues
+ .
+ This package installs the library for Python 3.
