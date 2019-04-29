@@ -6,6 +6,7 @@ Build-Depends:
     debhelper (>= 10),
     dh-python,
     python3-all,
+    python3-chardet,
     python3-pytest,
     python3-setuptools,
     python3-wheel
