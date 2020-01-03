@@ -80,8 +80,6 @@ Dependencies
 ============
 Python 2.7+ or 3.5+
 
-Optional dependencies
-----------------------------------
 - `chardet <https://github.com/chardet/chardet>`__
 
 Test dependencies
