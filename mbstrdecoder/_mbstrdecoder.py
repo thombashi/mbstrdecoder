@@ -195,8 +195,9 @@ class MultiByteStrDecoder(object):
             detect = {}
 
         detect_encoding = detect.get("encoding")
+        confidence = detect.get("confidence")
 
-        if detect_encoding != "ascii" and detect.get("confidence") == 1:
+        if detect_encoding not in ["ascii", "utf-8"] and confidence and confidence > 0.7:
             # utf7 tend to be misrecognized as ascii
             return detect_encoding
 

@@ -46,6 +46,7 @@ class Test_to_MultiByteStrDecoder_unicode:
             ["吾輩は猫である", "utf8", "utf_8", ["utf_32_le", "ascii"]],
             ["吾輩は猫である", "utf8", "utf_8", None],
             ["吾輩は猫である", "utf8", "utf_8", []],
+            ["Bob’s Burgers", "windows-1252", "windows_1252", []],
         ],
     )
     def test_normal_codec_candidate(self, value, encode, expected, codec_candidate_list):
