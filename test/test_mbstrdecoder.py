@@ -8,6 +8,7 @@ from __future__ import unicode_literals
 
 import pytest
 import six
+
 from mbstrdecoder import MultiByteStrDecoder
 
 

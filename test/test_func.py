@@ -11,6 +11,7 @@ import platform  # noqa: W0611
 from textwrap import dedent
 
 import pytest
+
 from mbstrdecoder._func import detect_file_encoding, to_codec_name
 
 

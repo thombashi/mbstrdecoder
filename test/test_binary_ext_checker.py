@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 from os.path import splitext
 
 import pytest
+
 from mbstrdecoder._binary_ext_checker import binary_exts, is_binary_ext_path
 
 
