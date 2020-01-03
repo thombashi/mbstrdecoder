@@ -228,9 +228,7 @@ class MultiByteStrDecoder(object):
             self.__codec = "unicode"
             return ""
 
-        codec_candidate_list = self.__get_codec_candidate_list(encoded_str)
-
-        for codec in codec_candidate_list:
+        for codec in self.__get_codec_candidate_list(encoded_str):
             if not codec:
                 continue
 
