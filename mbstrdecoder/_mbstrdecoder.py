@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import, unicode_literals
 
+import copy
 import re
 import sys
 
@@ -202,7 +203,7 @@ class MultiByteStrDecoder(object):
         return None
 
     def __get_codec_candidate_list(self, encoded_str):
-        codec_candidate_list = self.__CODEC_LIST
+        codec_candidate_list = copy.deepcopy(self.__CODEC_LIST)
         detect_encoding = self.__detect_encoding_helper(encoded_str)
 
         if detect_encoding:
