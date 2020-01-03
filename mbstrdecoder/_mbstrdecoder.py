@@ -186,10 +186,7 @@ class MultiByteStrDecoder(object):
 
     @staticmethod
     def __detect_encoding_helper(encoded_str):
-        try:
-            import chardet
-        except ImportError:
-            return None
+        import chardet
 
         try:
             detect = chardet.detect(encoded_str)
