@@ -73,8 +73,7 @@ setuptools.setup(
     tests_require=tests_require,
     extras_require={
         "all": [],  # TODO: remove in the future release
-        "build": ["twine", "wheel"],
-        "release": ["releasecmd>=0.0.18,<0.1.0"],
+        "dev": ["releasecmd>=0.1.0,<1", "twine", "wheel"],
         "test": tests_require,
     },
 
