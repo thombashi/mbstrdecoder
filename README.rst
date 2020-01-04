@@ -37,12 +37,6 @@ Install from PyPI
 
     pip install mbstrdecoder
 
-or install all of the optional dependencies:
-
-::
-
-    pip install mbstrdecoder[all]
-
 Install from PPA (for Ubuntu)
 ------------------------------
 ::
@@ -58,7 +52,6 @@ Usage
 :Sample Code:
     .. code:: python
 
-        from __future__ import print_function
         from mbstrdecoder import MultiByteStrDecoder
 
         encoded_multibyte_text = "マルチバイト文字".encode("utf-8")
@@ -78,7 +71,7 @@ Usage
 
 Dependencies
 ============
-Python 2.7+ or 3.5+
+Python 2.7+ or 3.5+ or `PyPy <https://pypy.org/>`__
 
 - `chardet <https://github.com/chardet/chardet>`__
 
