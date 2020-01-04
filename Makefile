@@ -13,6 +13,7 @@ build:
 .PHONY: check
 check:
 	python setup.py check
+	codespell mbstrdecoder examples test -q 2 --check-filenames --ignore-words-list followings
 	pylama
 
 .PHONY: clean
