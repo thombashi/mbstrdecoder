@@ -16,6 +16,7 @@ check:
 	codespell $(PACKAGE) examples test -q 2 --check-filenames --ignore-words-list followings
 	travis lint
 	pylama
+	pip check
 
 .PHONY: clean
 clean:
@@ -44,3 +45,4 @@ release:
 .PHONY: setup
 setup:
 	@pip install --upgrade -e .[test] tox
+	pip check
