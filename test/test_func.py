@@ -42,7 +42,7 @@ class Test_detect_file_encoding(object):
 
         assert detect_file_encoding(str(p_csv)) == expected
 
-    @pytest.mark.skipif(platform.system() != "Windows", reason="platform dependent tests")
+    @pytest.mark.skipif(platform.system() == "Windows", reason="platform dependent tests")
     def test_normal_fifo(self, tmpdir):
         fifo = tmpdir.join("test_fifo")
 
