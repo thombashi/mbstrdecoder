@@ -82,6 +82,5 @@ Python 2.7+ or 3.5+
 Test dependencies
 ----------------------------------
 - `pytest <https://pypi.org/project/pytest>`__
-- `pytest-runner <https://github.com/pytest-dev/pytest-runner>`__
 - `six <https://pypi.org/project/six/>`__
 - `tox <https://pypi.org/project/tox>`__
