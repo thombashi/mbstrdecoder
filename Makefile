@@ -14,6 +14,7 @@ build:
 check:
 	python setup.py check
 	codespell $(PACKAGE) examples test -q 2 --check-filenames --ignore-words-list followings
+	travis lint
 	pylama
 
 .PHONY: clean
