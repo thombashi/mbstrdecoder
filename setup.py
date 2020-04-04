@@ -58,14 +58,7 @@ setuptools.setup(
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     install_requires=install_requires,
     tests_require=tests_require,
-    extras_require={
-        "all": [],  # TODO: remove in the future release
-        "dev": ["releasecmd>=0.1.0,<1", "twine", "wheel"]
-        + ["autoflake", "black", "isort"]
-        + ["codespell", "pylama"]
-        + tests_require,
-        "test": tests_require,
-    },
+    extras_require={"test": tests_require},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
