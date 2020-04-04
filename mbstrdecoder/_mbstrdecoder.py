@@ -18,7 +18,7 @@ class MultiByteStrDecoder:
         https://docs.python.org/3/library/codecs.html
     """
 
-    __CODEC_LIST = [
+    __CODECS = [
         "utf_7",
         "utf_8",
         "utf_8_sig",
@@ -199,7 +199,7 @@ class MultiByteStrDecoder:
         return None
 
     def __get_codec_candidate_list(self, encoded_str):
-        codec_candidate_list = copy.deepcopy(self.__CODEC_LIST)
+        codec_candidate_list = copy.deepcopy(self.__CODECS)
         detect_encoding = self.__detect_encoding_helper(encoded_str)
 
         if detect_encoding:
