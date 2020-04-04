@@ -5,11 +5,12 @@
 import os
 import stat
 from errno import EBADF, ENOENT, ENOTDIR
+from typing import Optional, Union
 
 from ._binary_ext_checker import is_binary_ext_path
 
 
-def is_fifo(file_path):
+def is_fifo(file_path: Union[int, bytes, str]) -> bool:
     try:
         return stat.S_ISFIFO(os.stat(file_path).st_mode)
     except OSError as e:
@@ -21,14 +22,14 @@ def is_fifo(file_path):
         return False
 
 
-def to_codec_name(name):
+def to_codec_name(name: str) -> Optional[str]:
     if not name:
         return None
 
     return name.lower().replace("-", "_")
 
 
-def detect_file_encoding(file_path):
+def detect_file_encoding(file_path) -> Optional[str]:
     from chardet.universaldetector import UniversalDetector
 
     if not os.path.isfile(file_path) or is_binary_ext_path(file_path) or is_fifo(file_path):

@@ -4,11 +4,12 @@
 
 import copy
 import re
+from typing import List, Optional, Sequence
 
 from ._func import to_codec_name
 
 
-def b(s):
+def b(s: str) -> bytes:
     return s.encode("latin-1")
 
 
@@ -130,38 +131,38 @@ class MultiByteStrDecoder:
     __RE_UTF7 = re.compile(b("[+].*?[-]"))
 
     @property
-    def unicode_str(self):
+    def unicode_str(self) -> str:
         return self.__unicode_str
 
     @property
-    def codec(self):
+    def codec(self) -> Optional[str]:
         return self.__codec
 
-    def __init__(self, value, codec_candidates=None):
+    def __init__(self, value, codec_candidates: Sequence[str] = None) -> None:
         self.__encoded_str = value
-        self.__codec = None
+        self.__codec = None  # type: Optional[str]
         if codec_candidates is None:
-            self.__codec_candidate_list = []
+            self.__codec_candidate_list = []  # type: List[str]
         else:
-            self.__codec_candidate_list = codec_candidates
+            self.__codec_candidate_list = list(codec_candidates)
 
         self.__validate_str()
 
         self.__unicode_str = self.__to_unicode()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return "codec={:s}, unicode={:s}".format(self.codec, self.unicode_str)
 
-    def __validate_str(self):
+    def __validate_str(self) -> None:
         if isinstance(self.__encoded_str, (str, bytes)):
             return
 
         raise ValueError("value must be a string: actual={}".format(type(self.__encoded_str)))
 
-    def __is_buffer(self):
+    def __is_buffer(self) -> bool:
         return isinstance(self.__encoded_str, memoryview)
 
-    def __is_multibyte_utf7(self, encoded_str):
+    def __is_multibyte_utf7(self, encoded_str) -> bool:
         if self.__codec != "utf_7":
             return False
 
@@ -174,14 +175,14 @@ class MultiByteStrDecoder:
 
         return utf7_symbol_count == len(self.__RE_UTF7.findall(encoded_str))
 
-    def __get_encoded_str(self):
+    def __get_encoded_str(self) -> str:
         if self.__is_buffer():
             return str(self.__encoded_str)
 
         return self.__encoded_str
 
     @staticmethod
-    def __detect_encoding_helper(encoded_str):
+    def __detect_encoding_helper(encoded_str) -> Optional[str]:
         import chardet
 
         try:
@@ -198,7 +199,7 @@ class MultiByteStrDecoder:
 
         return None
 
-    def __get_codec_candidate_list(self, encoded_str):
+    def __get_codec_candidate_list(self, encoded_str) -> List[str]:
         codec_candidate_list = copy.deepcopy(self.__CODECS)
         detect_encoding = self.__detect_encoding_helper(encoded_str)
 
@@ -281,7 +282,7 @@ class MultiByteStrDecoder:
 
         return decoded_str
 
-    def __process_utf7(self, encoded_str, decoded_str):
+    def __process_utf7(self, encoded_str, decoded_str) -> str:
         if not encoded_str:
             self.__codec = "unicode"
 

@@ -260,5 +260,5 @@ binary_exts = (
 )
 
 
-def is_binary_ext_path(filepath):
+def is_binary_ext_path(filepath) -> bool:
     return os.path.splitext(filepath)[1].lstrip(".") in binary_exts
