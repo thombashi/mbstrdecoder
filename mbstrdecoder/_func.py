@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import absolute_import, unicode_literals
 
 import os
 import stat
@@ -51,7 +47,7 @@ def detect_file_encoding(file_path):
                 detector.feed(binary)
                 if detector.done:
                     break
-    except IOError:
+    except OSError:
         return None
     finally:
         detector.close()

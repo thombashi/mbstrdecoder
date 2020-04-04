@@ -75,7 +75,7 @@ Usage
 
 Dependencies
 ============
-Python 2.7+ or 3.5+
+Python 3.5+
 
 - `chardet <https://github.com/chardet/chardet>`__
 

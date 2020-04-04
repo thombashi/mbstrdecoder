@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 import os
 import platform
@@ -23,7 +19,7 @@ def test_to_codec_name(value, expected):
     assert to_codec_name(value) == expected
 
 
-class Test_detect_file_encoding(object):
+class Test_detect_file_encoding:
     @pytest.mark.parametrize(["value", "expected"], [["utf8", "utf_8"], ["utf16", "utf_16"]])
     def test_normal(self, tmpdir, value, expected):
         data = dedent(

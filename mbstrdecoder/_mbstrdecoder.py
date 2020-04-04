@@ -1,20 +1,18 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import absolute_import, unicode_literals
-
 import copy
 import re
-import sys
 
 from ._func import to_codec_name
-from ._six import PY3, b, binary_type, string_types
 
 
-class MultiByteStrDecoder(object):
+def b(s):
+    return s.encode("latin-1")
+
+
+class MultiByteStrDecoder:
     """
     Reference:
         https://docs.python.org/3/library/codecs.html
@@ -155,15 +153,12 @@ class MultiByteStrDecoder(object):
         return "codec={:s}, unicode={:s}".format(self.codec, self.unicode_str)
 
     def __validate_str(self):
-        if isinstance(self.__encoded_str, (string_types, binary_type)):
+        if isinstance(self.__encoded_str, (str, bytes)):
             return
 
         raise ValueError("value must be a string: actual={}".format(type(self.__encoded_str)))
 
     def __is_buffer(self):
-        if sys.version_info.major <= 2:
-            return isinstance(self.__encoded_str, buffer)
-
         return isinstance(self.__encoded_str, memoryview)
 
     def __is_multibyte_utf7(self, encoded_str):
@@ -246,7 +241,7 @@ class MultiByteStrDecoder(object):
                 self.__codec = "unicode"
                 return encoded_str
             except AttributeError:
-                if PY3 and isinstance(encoded_str, string_types):
+                if isinstance(encoded_str, str):
                     # already a unicode string (python 3)
                     self.__codec = "unicode"
 

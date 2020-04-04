@@ -1,13 +1,8 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-from __future__ import unicode_literals
-
 import pytest
-import six
 
 from mbstrdecoder import MultiByteStrDecoder
 
@@ -21,7 +16,7 @@ class Test_to_MultiByteStrDecoder_repr:
     def test_normal(self, value, expected):
         decoder = MultiByteStrDecoder(value)
 
-        assert six.text_type(decoder) == expected
+        assert str(decoder) == expected
 
 
 class Test_to_MultiByteStrDecoder_unicode:
@@ -59,7 +54,7 @@ class Test_to_MultiByteStrDecoder_unicode:
         [
             ["いろはにほへと", "utf_7"],
             [
-                "RKBTqn1G9HIZ9onY9mCklj3+8ye7WBmu0xKMqp3ORT3pMgR5m73VXAR/5YrTZTGernMYLCPYdwIMewFY+6xOZmWwCrXjfw3sO2dYLubh9EIMrc/XEvAhMFd969G2yQkyFTNf9M8Ag94QCuBk51yQLSbxgmxJTqEw6bdC4gNTI44=",
+                "RKBTqn1G9HIZ9onY9mCklj3+8ye7WBmu0xKMqp3ORT3pMgR5m73VXAR/5YrTZTGernMYLCPYdwIMewFY+6xOZmWwCrXjfw3sO2dYLubh9EIMrc/XEvAhMFd969G2yQkyFTNf9M8Ag94QCuBk51yQLSbxgmxJTqEw6bdC4gNTI44=",  # noqa
                 "ascii",
             ],
             ["マルチバイト文字", "utf_8"],
