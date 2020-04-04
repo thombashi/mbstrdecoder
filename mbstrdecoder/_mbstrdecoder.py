@@ -137,13 +137,13 @@ class MultiByteStrDecoder:
     def codec(self):
         return self.__codec
 
-    def __init__(self, value, codec_candidate_list=None):
+    def __init__(self, value, codec_candidates=None):
         self.__encoded_str = value
         self.__codec = None
-        if codec_candidate_list is None:
+        if codec_candidates is None:
             self.__codec_candidate_list = []
         else:
-            self.__codec_candidate_list = codec_candidate_list
+            self.__codec_candidate_list = codec_candidates
 
         self.__validate_str()
 
