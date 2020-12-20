@@ -75,12 +75,5 @@ Usage
 
 Dependencies
 ============
-Python 3.5+
-
-- `chardet <https://github.com/chardet/chardet>`__
-
-Test dependencies
-----------------------------------
-- `pytest <https://pypi.org/project/pytest>`__
-- `six <https://pypi.org/project/six/>`__
-- `tox <https://pypi.org/project/tox>`__
+- Python 3.5+
+- `Python package dependencies (automatically installed) <https://github.com/thombashi/mbstrdecoder/network/dependencies>`__
