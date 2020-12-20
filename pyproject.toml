@@ -47,3 +47,8 @@ exclude_lines = [
     'abstractclassmethod',
     'warnings.warn',
 ]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "test",
+]
