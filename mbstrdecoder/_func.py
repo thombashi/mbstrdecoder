@@ -22,7 +22,7 @@ def is_fifo(file_path: Union[int, bytes, str]) -> bool:
         return False
 
 
-def to_codec_name(name: str) -> Optional[str]:
+def to_codec_name(name: Optional[str]) -> Optional[str]:
     if not name:
         return None
 
