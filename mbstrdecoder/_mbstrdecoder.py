@@ -140,9 +140,9 @@ class MultiByteStrDecoder:
 
     def __init__(self, value, codec_candidates: Sequence[str] = None) -> None:
         self.__encoded_str = value
-        self.__codec = None  # type: Optional[str]
+        self.__codec: Optional[str] = None
         if codec_candidates is None:
-            self.__codec_candidate_list = []  # type: List[str]
+            self.__codec_candidate_list: List[str] = []
         else:
             self.__codec_candidate_list = list(codec_candidates)
 
@@ -151,13 +151,13 @@ class MultiByteStrDecoder:
         self.__unicode_str = self.__to_unicode()
 
     def __repr__(self) -> str:
-        return "codec={:s}, unicode={:s}".format(self.codec, self.unicode_str)
+        return f"codec={self.codec:s}, unicode={self.unicode_str:s}"
 
     def __validate_str(self) -> None:
         if isinstance(self.__encoded_str, (str, bytes)):
             return
 
-        raise ValueError("value must be a string: actual={}".format(type(self.__encoded_str)))
+        raise ValueError(f"value must be a string: actual={type(self.__encoded_str)}")
 
     def __is_buffer(self) -> bool:
         return isinstance(self.__encoded_str, memoryview)
@@ -262,7 +262,7 @@ class MultiByteStrDecoder:
                 self.__codec = None
 
                 try:
-                    return "{}".format(encoded_str)
+                    return f"{encoded_str}"
                 except UnicodeDecodeError:
                     # some of the objects that cannot convertible to a string
                     # may reach this line
@@ -271,9 +271,9 @@ class MultiByteStrDecoder:
             self.__codec = None
 
             try:
-                message = "unknown codec: encoded_str={}".format(encoded_str)
+                message = f"unknown codec: encoded_str={encoded_str}"
             except UnicodeDecodeError:
-                message = "unknown codec: value-type={}".format(type(encoded_str))
+                message = f"unknown codec: value-type={type(encoded_str)}"
 
             raise UnicodeDecodeError(message)
 
