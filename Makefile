@@ -1,33 +1,32 @@
 PACKAGE := mbstrdecoder
 DOCS_DIR := docs
+PYTHON := python3
 
 
 .PHONY: build
-build:
-	@make clean
-	@tox -e build
+build: clean
+	@$(PYTHON) -m tox -e build
 	ls -lh dist/*
 
 .PHONY: check
 check:
-	@tox -e lint
+	@$(PYTHON) -m tox -e lint
 	travis lint
-	pip check
 
 .PHONY: clean
 clean:
-	@tox -e clean
+	@$(PYTHON) -m tox -e clean
 
 .PHONY: fmt
 fmt:
-	@tox -e fmt
+	@$(PYTHON) -m tox -e fmt
 
 .PHONY: release
 release:
-	@python setup.py release --sign
+	@$(PYTHON) setup.py release --sign
 	@make clean
 
 .PHONY: setup
 setup:
-	@pip install --upgrade -e .[test] tox
-	pip check
+	@$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade -e .[test] releasecmd tox
+	@$(PYTHON) -m pip check
