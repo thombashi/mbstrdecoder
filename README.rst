@@ -24,9 +24,6 @@ Summary
     :target: https://travis-ci.org/thombashi/mbstrdecoder
     :alt: Linux/macOS CI status
 
-.. image:: https://img.shields.io/appveyor/ci/thombashi/mbstrdecoder/master.svg?label=Windows%20CI
-    :target: https://ci.appveyor.com/project/thombashi/mbstrdecoder
-
 .. image:: https://coveralls.io/repos/github/thombashi/mbstrdecoder/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/mbstrdecoder?branch=master
     :alt: Test coverage
