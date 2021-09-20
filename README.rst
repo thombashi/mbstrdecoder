@@ -20,9 +20,17 @@ Summary
     :target: https://pypi.org/project/mbstrdecoder
     :alt: Supported Python implementations
 
+.. image:: https://github.com/thombashi/mbstrdecoder/actions/workflows/lint_and_test.yml/badge.svg
+    :target: https://github.com/thombashi/mbstrdecoder/actions/workflows/lint_and_test.yml
+    :alt: CI status of Linux/macOS/Windows
+
 .. image:: https://coveralls.io/repos/github/thombashi/mbstrdecoder/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/mbstrdecoder?branch=master
     :alt: Test coverage
+
+.. image:: https://github.com/thombashi/mbstrdecoder/actions/workflows/codeql-analysis.yml/badge.svg
+    :target: https://github.com/thombashi/mbstrdecoder/actions/workflows/codeql-analysis.yml
+    :alt: CodeQL
 
 
 Installation
