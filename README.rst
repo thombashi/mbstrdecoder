@@ -20,10 +20,6 @@ Summary
     :target: https://pypi.org/project/mbstrdecoder
     :alt: Supported Python implementations
 
-.. image:: https://img.shields.io/travis/thombashi/mbstrdecoder/master.svg?label=Linux/macOS%20CI
-    :target: https://travis-ci.org/thombashi/mbstrdecoder
-    :alt: Linux/macOS CI status
-
 .. image:: https://coveralls.io/repos/github/thombashi/mbstrdecoder/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/mbstrdecoder?branch=master
     :alt: Test coverage
