@@ -188,7 +188,7 @@ class MultiByteStrDecoder:
         try:
             detect = chardet.detect(encoded_str)
         except TypeError:
-            detect = {}
+            detect = {}  # type: ignore
 
         detect_encoding = detect.get("encoding")
         confidence = detect.get("confidence")
