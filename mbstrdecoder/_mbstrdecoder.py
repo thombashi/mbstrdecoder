@@ -237,10 +237,6 @@ class MultiByteStrDecoder:
             except UnicodeDecodeError:
                 self.__codec = None
                 continue
-            except UnicodeEncodeError:
-                # already a unicode string (python 2)
-                self.__codec = "unicode"
-                return encoded_str
             except AttributeError:
                 if isinstance(encoded_str, str):
                     # already a unicode string (python 3)
@@ -248,14 +244,6 @@ class MultiByteStrDecoder:
 
                     if not encoded_str:
                         return encoded_str
-
-                    try:
-                        # python 2 compatibility
-                        encoded_str.encode("ascii")
-                        self.__codec = "ascii"
-                        return encoded_str
-                    except UnicodeEncodeError:
-                        pass
 
                     return encoded_str
 
