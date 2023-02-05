@@ -138,7 +138,7 @@ class MultiByteStrDecoder:
     def codec(self) -> Optional[str]:
         return self.__codec
 
-    def __init__(self, value, codec_candidates: Sequence[str] = None) -> None:
+    def __init__(self, value, codec_candidates: Optional[Sequence[str]] = None) -> None:
         self.__encoded_str = value
         self.__codec: Optional[str] = None
         if codec_candidates is None:
