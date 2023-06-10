@@ -28,8 +28,8 @@ Summary
     :target: https://coveralls.io/github/thombashi/mbstrdecoder?branch=master
     :alt: Test coverage
 
-.. image:: https://github.com/thombashi/mbstrdecoder/actions/workflows/codeql-analysis.yml/badge.svg
-    :target: https://github.com/thombashi/mbstrdecoder/actions/workflows/codeql-analysis.yml
+.. image:: https://github.com/thombashi/mbstrdecoder/actions/workflows/github-code-scanning/codeql/badge.svg
+    :target: https://github.com/thombashi/mbstrdecoder/actions/workflows/github-code-scanning/codeql
     :alt: CodeQL
 
 
