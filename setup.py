@@ -43,7 +43,7 @@ setuptools.setup(
     url=REPOSITORY_URL,
     author=pkg_info["__author__"],
     author_email=pkg_info["__email__"],
-    description="multi-byte character string decoder",
+    description=f"{MODULE_NAME} is a Python library for multi-byte character string decoder",
     include_package_data=True,
     keywords=[
         "multi-byte character",
