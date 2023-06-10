@@ -83,4 +83,5 @@ setuptools.setup(
         "Topic :: Text Processing",
     ],
     cmdclass=get_release_command_class(),
+    zip_safe=False,
 )
