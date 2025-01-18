@@ -8,6 +8,11 @@ from ._mbstrdecoder import MultiByteStrDecoder
 
 
 __all__ = (
+    "__author__",
+    "__copyright__",
+    "__email__",
+    "__license__",
+    "__version__",
     "detect_file_encoding",
     "MultiByteStrDecoder",
 )
