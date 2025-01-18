@@ -12,7 +12,12 @@ inf = float("inf")
 
 
 class Test_to_MultiByteStrDecoder_repr:
-    @pytest.mark.parametrize(["value", "expected"], [["吾輩は猫である", "codec=unicode, unicode=吾輩は猫である"]])
+    @pytest.mark.parametrize(
+        ["value", "expected"],
+        [
+            ["吾輩は猫である", "codec=unicode, unicode=吾輩は猫である"],
+        ],
+    )
     def test_normal(self, value, expected):
         decoder = MultiByteStrDecoder(value)
 
@@ -27,7 +32,11 @@ class Test_to_MultiByteStrDecoder_unicode:
 
     @pytest.mark.parametrize(
         ["value", "encode", "expected"],
-        [["", "utf8", "unicode"], ["abcdefgh", "ascii", "ascii"], ["吾輩は猫である", "utf8", "utf_8"]],
+        [
+            ["", "utf8", "unicode"],
+            ["abcdefgh", "ascii", "ascii"],
+            ["吾輩は猫である", "utf8", "utf_8"],
+        ],
     )
     def test_normal_codec(self, value, encode, expected):
         decoder = MultiByteStrDecoder(value.encode(encode))
@@ -70,7 +79,12 @@ class Test_to_MultiByteStrDecoder_unicode:
 
     @pytest.mark.parametrize(
         ["value", "expected"],
-        [[None, ValueError], [True, ValueError], [[], ValueError], [1, ValueError]],
+        [
+            [None, ValueError],
+            [True, ValueError],
+            [[], ValueError],
+            [1, ValueError],
+        ],
     )
     def test_exception(self, value, expected):
         with pytest.raises(expected):
