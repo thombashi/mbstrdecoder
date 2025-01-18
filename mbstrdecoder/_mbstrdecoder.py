@@ -232,7 +232,7 @@ class MultiByteStrDecoder:
 
             try:
                 self.__codec = to_codec_name(codec)
-                decoded_str = encoded_str.decode(codec)
+                decoded_str = encoded_str.decode(codec)  # type: ignore
                 break
             except UnicodeDecodeError:
                 self.__codec = None
