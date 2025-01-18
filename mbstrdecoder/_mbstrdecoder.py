@@ -4,7 +4,8 @@
 
 import copy
 import re
-from typing import List, Optional, Sequence
+from collections.abc import Sequence
+from typing import Optional
 
 from ._func import to_codec_name
 
@@ -142,7 +143,7 @@ class MultiByteStrDecoder:
         self.__encoded_str = value
         self.__codec: Optional[str] = None
         if codec_candidates is None:
-            self.__codec_candidate_list: List[str] = []
+            self.__codec_candidate_list: list[str] = []
         else:
             self.__codec_candidate_list = list(codec_candidates)
 
@@ -199,7 +200,7 @@ class MultiByteStrDecoder:
 
         return None
 
-    def __get_codec_candidate_list(self, encoded_str) -> List[str]:
+    def __get_codec_candidate_list(self, encoded_str) -> list[str]:
         codec_candidate_list = copy.deepcopy(self.__CODECS)
         detect_encoding = self.__detect_encoding_helper(encoded_str)
 
