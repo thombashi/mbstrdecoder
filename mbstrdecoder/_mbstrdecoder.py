@@ -263,7 +263,7 @@ class MultiByteStrDecoder:
             except UnicodeDecodeError:
                 message = f"unknown codec: value-type={type(encoded_str)}"
 
-            raise UnicodeDecodeError(message)
+            raise UnicodeDecodeError("unknown", b"", 0, len(encoded_str), message)
 
         if self.codec == "utf_7":
             return self.__process_utf7(encoded_str, decoded_str)
