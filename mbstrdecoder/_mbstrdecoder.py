@@ -5,7 +5,7 @@
 import copy
 import re
 from collections.abc import Sequence
-from typing import Optional
+from typing import Final, Optional
 
 from ._func import to_codec_name
 
@@ -20,7 +20,7 @@ class MultiByteStrDecoder:
         https://docs.python.org/3/library/codecs.html
     """
 
-    __CODECS = [
+    __CODECS: Final = [
         "utf_7",
         "utf_8",
         "utf_8_sig",

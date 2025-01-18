@@ -3,10 +3,11 @@
 """
 
 import os.path
+from typing import Final
 
 
 # list from https://github.com/sindresorhus/binary-extensions
-binary_exts = (
+binary_exts: Final = (
     "3dm",
     "3ds",
     "3g2",
