@@ -20,8 +20,8 @@ Summary
     :target: https://pypi.org/project/mbstrdecoder
     :alt: Supported Python implementations
 
-.. image:: https://github.com/thombashi/mbstrdecoder/actions/workflows/lint_and_test.yml/badge.svg
-    :target: https://github.com/thombashi/mbstrdecoder/actions/workflows/lint_and_test.yml
+.. image:: https://github.com/thombashi/mbstrdecoder/actions/workflows/ci.yml/badge.svg
+    :target: https://github.com/thombashi/mbstrdecoder/actions/workflows/ci.yml
     :alt: CI status of Linux/macOS/Windows
 
 .. image:: https://coveralls.io/repos/github/thombashi/mbstrdecoder/badge.svg?branch=master
