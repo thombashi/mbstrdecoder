@@ -62,7 +62,6 @@ setuptools.setup(
     },
     python_requires=">=3.7",
     install_requires=install_requires,
-    tests_require=tests_require,
     extras_require={"test": tests_require},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
