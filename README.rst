@@ -76,5 +76,5 @@ Usage
 
 Dependencies
 ============
-- Python 3.9+
+- Python 3.10+
 - `Python package dependencies (automatically installed) <https://github.com/thombashi/mbstrdecoder/network/dependencies>`__
