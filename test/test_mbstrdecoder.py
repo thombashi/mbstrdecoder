@@ -88,3 +88,50 @@ class Test_to_MultiByteStrDecoder_unicode:
     def test_exception(self, value, expected):
         with pytest.raises(expected):
             MultiByteStrDecoder(value)
+
+
+class Test_codec_candidates:
+    @pytest.mark.parametrize("value", ["", "plain", "吾輩は猫である", b"", b"plain"])
+    @pytest.mark.parametrize("container", [list, tuple])
+    def test_caller_candidates_unchanged(self, value, container):
+        candidates = container(["utf_8", "ascii", "utf_8"])
+        before = candidates[:]
+
+        first = MultiByteStrDecoder(value, candidates)
+        second = MultiByteStrDecoder(value, candidates)
+
+        assert candidates == before
+        assert (first.unicode_str, first.codec) == (second.unicode_str, second.codec)
+
+    @pytest.mark.parametrize("detected", [None, "latin_1", "detected_codec"])
+    def test_order_and_independent_lists(self, monkeypatch, detected):
+        monkeypatch.setattr(
+            MultiByteStrDecoder,
+            "_MultiByteStrDecoder__detect_encoding_helper",
+            staticmethod(lambda value: detected),
+        )
+        defaults = MultiByteStrDecoder._MultiByteStrDecoder__CODECS[:]
+        candidates = ["utf_8", "utf_8", "unknown_codec", ""]
+        decoder = MultiByteStrDecoder("plain", candidates)
+        other = MultiByteStrDecoder("other")
+        expected = defaults[:]
+        if detected:
+            if detected in expected:
+                expected.remove(detected)
+            expected.insert(0, detected)
+        expected = candidates + [name for name in expected if name not in candidates]
+
+        first = decoder._MultiByteStrDecoder__get_codec_candidate_list(b"plain")
+        assert first == expected
+        first.reverse()
+        first.append("another_codec")
+        assert decoder._MultiByteStrDecoder__get_codec_candidate_list(b"plain") == expected
+        assert other._MultiByteStrDecoder__get_codec_candidate_list(b"other") == (
+            ([detected] if detected else []) + [name for name in defaults if name != detected]
+        )
+        assert MultiByteStrDecoder._MultiByteStrDecoder__CODECS == defaults
+        assert candidates == ["utf_8", "utf_8", "unknown_codec", ""]
+
+    def test_unknown_candidate_error(self):
+        with pytest.raises(LookupError, match="unknown encoding"):
+            MultiByteStrDecoder(b"plain", ["unknown_codec"])
