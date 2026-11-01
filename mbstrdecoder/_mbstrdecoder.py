@@ -2,7 +2,6 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-import copy
 import re
 from collections.abc import Sequence
 from typing import Final, Optional
@@ -201,7 +200,8 @@ class MultiByteStrDecoder:
         return None
 
     def __get_codec_candidate_list(self, encoded_str) -> list[str]:
-        codec_candidate_list = copy.deepcopy(self.__CODECS)
+        # Codec names are immutable; only the candidate list needs a copy.
+        codec_candidate_list = self.__CODECS.copy()
         detect_encoding = self.__detect_encoding_helper(encoded_str)
 
         if detect_encoding:
